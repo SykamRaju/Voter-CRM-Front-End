@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 import streamlit as st
 from typing import Callable
 from PIL import Image
@@ -60,19 +59,18 @@ class Login:
             print(login_header)
             print(submit_button)
             do_login(username, password)
-
-        if st.session_state.stage == 2 :
+        elif st.session_state.stage == 2 :
             signup_form = st.form(key='signup_form')
-            with signup_form:
-                def validate_passwords(passw, cpass):
-                    print(passw)
-                    st.session_state.more_stuff = True
-                    if password != confirm_password:
-                        signup_form.form_report_error('Confirm Password', 'Passwords do not match')
-                username = signup_form.text_input('Username')
-                password = signup_form.text_input('Password', type='password')
-                confirm_password = signup_form.text_input('Confirm Password', type='password')
-                sign_up = signup_form.form_submit_button(label='Sign Up', on_click=validate_passwords(password, confirm_password))
+            username = signup_form.text_input('Username')
+            password = signup_form.text_input('Password', type='password')
+            confirm_password = signup_form.text_input('Confirm Password', type='password')
+            def validate_passwords(passw, cpass):
+                if password != confirm_password:
+                    signup_form.form_report_error('Confirm Password', 'Passwords do not match')
+                elif password == confirm_password and password is not None and password != '':
+                   switch_page('states')
+
+            sign_up = signup_form.form_submit_button(label='Sign Up', on_click=validate_passwords(password, confirm_password))
 
 def do_login(uname, pwd):
     if uname == 't' and pwd == 'p':
