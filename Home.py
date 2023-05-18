@@ -1,18 +1,26 @@
 import streamlit as st
 import pandas as pd 
 import numpy as np 
+import toml 
 
-st.set_page_config(
-    page_title="Voter CRM",
-    page_icon="🧊",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "# This is a header. This is an *extremely* cool app!"
-    }
-)
+
+config = toml.load(".streamlit/config.toml")
+
+app_name = config['general']['app_name']
+st.title(app_name)
+
+
+# st.set_page_config(
+#     page_title="Voter CRM",
+#     page_icon="🧊",
+#     layout="wide",
+#     initial_sidebar_state="expanded",
+#     menu_items={
+#         'Get Help': 'https://www.extremelycoolapp.com/help',
+#         'Report a bug': "https://www.extremelycoolapp.com/bug",
+#         'About': "# This is a header. This is an *extremely* cool app!"
+#     }
+# )
 
 st.write("""
 # Voter CRM
