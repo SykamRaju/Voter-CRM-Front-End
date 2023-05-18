@@ -3,6 +3,13 @@
 app_name = "V V V V"
 debug = true
 
+[api_url]
+admin_auth_login_api = "http://votercrm/admin/auth/login"
+admin_auth_signup_api = "http://votercrm/admin/auth/signup" 
+admin_auth_logout_api = "http://votercrm/admin/auth/logout"
+admin_auth_changepassword_api = "http://votercrm/admin/auth/changepassword"
+
+
 [theme]
 primaryColor="#1b4332"
 backgroundColor="#fff"
